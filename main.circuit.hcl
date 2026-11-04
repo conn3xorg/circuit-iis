@@ -1,4 +1,4 @@
-# Facts confirm each host is Windows Server 2025 before anything is installed.
+# Facts confirm each host is Windows Server 2022 or 2025 before anything is installed.
 data "conn3x_host" "facts" {
   for_each = var.hosts
 
@@ -16,8 +16,8 @@ data "conn3x_host" "facts" {
 
   lifecycle {
     postcondition {
-      condition     = self.os_family == "windows" && self.windows.release == "2025" && self.arch == "x86_64"
-      error_message = "circuit-iis runs on x86_64 Windows Server 2025. It's the only release it has been tested on."
+      condition     = self.os_family == "windows" && contains(["2022", "2025"], self.windows.release) && self.arch == "x86_64"
+      error_message = "circuit-iis runs on x86_64 Windows Server 2022 or 2025, the releases it is tested on."
     }
   }
 }

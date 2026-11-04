@@ -1,4 +1,4 @@
-# Applied by CI to the windows-2025 runner itself, over loopback OpenSSH.
+# Applied by CI to the windows-2022 and windows-2025 runners themselves, over loopback OpenSSH.
 # ci.auto.tfvars is written by the workflow.
 
 variable "user" {

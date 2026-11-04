@@ -48,9 +48,13 @@ jobs:
   # releases have no Windows binary yet, so it's built from the same tag.
   e2e:
     needs: validate
-    runs-on: windows-2025
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-2022, windows-2025]
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 30
-    name: e2e (windows-2025)
+    name: e2e (${{ matrix.os }})
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:

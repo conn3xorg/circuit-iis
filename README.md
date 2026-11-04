@@ -1,6 +1,6 @@
 # circuit-iis
 
-A Conn3x circuit that turns a Windows Server 2025 host into an IIS web server: IIS installed, a site with its own app pool serving a folder only administrators can change, and the port opened in Windows Firewall. Optionally, Microsoft's URL Rewrite module, and a nightly app pool recycle at a time you pick.
+A Conn3x circuit that turns a Windows Server 2022 or 2025 host into an IIS web server: IIS installed, a site with its own app pool serving a folder only administrators can change, and the port opened in Windows Firewall. Optionally, Microsoft's URL Rewrite module, and a nightly app pool recycle at a time you pick.
 
 **Experimental.** Windows support in Conn3x is new, and the modules this circuit uses may change between releases.
 
@@ -30,7 +30,7 @@ The host needs OpenSSH Server running and your key in `administrators_authorized
 
 On each host, in order:
 
-1. Checks it's x86_64 Windows Server 2025. The plan fails on anything else.
+1. Checks it's x86_64 Windows Server 2022 or 2025. The plan fails on anything else.
 2. Installs the `Web-Server` feature, and `Web-Static-Content`, which a plain install includes but an image with IIS already on may not. Without it, IIS answers every page with an empty 200. Reboots only if Windows asks.
 3. Stops `Default Web Site` and keeps it from starting with IIS, since it holds port 80 for every host name. It isn't deleted. Set `stop_default_site = false` to leave it alone.
 4. With `url_rewrite = true`, installs IIS URL Rewrite 2.1 from `download.microsoft.com`, checked against its SHA-256 before msiexec sees it.
@@ -50,7 +50,7 @@ Whoever can change the files a site serves can run code as its app pool, and eve
 - https. Only http bindings for now.
 - ASP.NET or any other server-side framework. The pool runs no managed code.
 - More than one site per host, or more than one binding per site.
-- Windows Server 2022, Server Core, or a domain member. Only Server 2025 Datacenter has been tried.
+- Server Core, or a domain member. Only the Datacenter editions with Desktop Experience have been tried.
 - Removal. Deleting the module removes the site, the pool, the firewall rule and the task, and leaves IIS, the folder, its files and URL Rewrite in place. `Default Web Site` stays stopped.
 
 ## Inputs
