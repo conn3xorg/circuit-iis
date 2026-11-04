@@ -10,10 +10,8 @@ permissions:
   contents: read
 
 env:
-  # PLACEHOLDER: the first Conn3x release with windows_iis_app_pool and
-  # windows_iis_site, such as v0.7.0. Set it before this repository is
-  # published; until then every job fails at the install step on purpose.
-  CONN3X_VERSION: vX.Y.Z-first-release-with-iis
+  # The first Conn3x release with windows_iis_app_pool and windows_iis_site.
+  CONN3X_VERSION: v0.7.0
 
 jobs:
   validate:

@@ -2,7 +2,7 @@
 
 A Conn3x circuit that turns a Windows Server 2022 or 2025 host into an IIS web server: IIS installed, a site with its own app pool serving a folder only administrators can change, and the port opened in Windows Firewall. Optionally, Microsoft's URL Rewrite module, and a nightly app pool recycle at a time you pick.
 
-**Experimental.** Windows support in Conn3x is new, and the modules this circuit uses may change between releases.
+**Experimental.** Windows support in Conn3x is new, and the modules this circuit uses may change between releases. It needs Conn3x v0.7.0 or later.
 
 ## Usage
 
